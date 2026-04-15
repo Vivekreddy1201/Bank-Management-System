@@ -40,12 +40,6 @@ The project demonstrates **scalable backend design**, **secure authentication**,
 * Transfer funds between accounts
 * View detailed transaction history
 
-### Loan Management
-
-* Apply for loans
-* View loan details and status
-* Dedicated loan routes and UI
-
 ### Security
 
 * Strong password validation (Pydantic)
@@ -103,8 +97,6 @@ Bank-Management-System/
 │   ├── transfer.html
 │   ├── transfer_balance.html
 │   ├── transactions.html
-│   ├── loans.html
-│   ├── apply_loan.html
 │   ├── update_password.html
 │   └── message.html
 │
@@ -130,11 +122,6 @@ Bank-Management-System/
 * Account creation & deletion
 * Transaction history
 
-### Loans (`loans.py`)
-
-* Apply for loans
-* View loan details
-
 ---
 
 ## Authentication Flow
@@ -152,7 +139,6 @@ Bank-Management-System/
 * **users**
 * **accounts**
 * **transactions**
-* **loans** (for loan management)
 
 Uses `RealDictCursor` for dictionary-based query results.
 
@@ -213,7 +199,6 @@ http://127.0.0.1:5000
 
 * Modular architecture (**routers + services**)
 * Stateless authentication using **JWT cookies**
-* Loan management system integration
 * Clean UI with reusable **base template (base.html)**
 * Strong validation with **Pydantic v2**
   
