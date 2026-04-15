@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="text-center mb-4">
+    <h2>Welcome, {{ name }} 👋</h2>
+    <p class="text-muted">Your SmartBank Account Overview</p>
+</div>
+
+<div class="row justify-content-center">
+    {% if accounts %}
+    {% for acc in accounts %}
+    <div class="col-md-4 mb-3">
+        <div class="card p-3 text-center shadow-sm border-0">
+            <h5 class="text-primary">{{ acc.type }} Account</h5>
+            <p><strong>Account No:</strong> {{ acc.account_no }}</p>
+            <p><strong>Balance:</strong> ₹{{ "%.2f"|format(acc.balance) }}</p>
+            <p><strong>Status:</strong>
+                {% if not acc.status or acc.status == 'ACTIVE' %}
+                <span class="badge bg-success">Active</span>
+                {% elif acc.status == 'SUSPENDED' %}
+                <span class="badge bg-warning text-dark">Suspended</span>
+                {% else %}
+                <span class="badge bg-danger">Closed</span>
+                {% endif %}
+            </p>
+            <a href="/transactions/{{ acc.account_id }}" class="btn btn-outline-primary btn-sm mt-2 w-100">
+                📜 View Transactions
+            </a>
+            <a href="/delete_account/{{ acc.account_id }}" class="btn btn-outline-danger btn-sm mt-2 w-100">
+                🗑️ Delete Account
+            </a>
+
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="col-md-8">
+        <div class="alert alert-info text-center shadow-sm">
+            You don’t have any bank accounts yet.<br>
+            Click below to create your first one.
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="text-center mt-4">
+    <a href="/create_account" class="btn btn-primary m-2">➕ Create Account</a>
+    <a href="/deposit" class="btn btn-success m-2">💰 Deposit</a>
+    <a href="/withdraw" class="btn btn-warning m-2">💸 Withdraw</a>
+    <a href="/transfer" class="btn btn-info m-2">🔁 Transfer</a>
+    <a href="/update-password" class="btn btn-secondary m-2">🔑 Update Password</a>
+    <a href="/logout" class="btn btn-danger m-2">🚪 Logout</a>
+</div>
+
+{% endblock %}  

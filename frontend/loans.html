@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center mb-4">
+  <h3 class="text-primary">💰 My Loans</h3>
+  <a href="/apply_loan" class="btn btn-success mt-3">➕ Apply New Loan</a>
+</div>
+
+{% if loans %}
+<table class="table table-bordered table-striped mt-3">
+  <thead class="table-primary">
+    <tr>
+      <th>Loan ID</th>
+      <th>Account No</th>
+      <th>Type</th>
+      <th>Principal (₹)</th>
+      <th>Interest (%)</th>
+      <th>Status</th>
+      <th>Start</th>
+      <th>End</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for loan in loans %}
+    <tr>
+      <td>{{ loan.loan_id }}</td>
+      <td>{{ loan.account_no }}</td>
+      <td>{{ loan.loan_type }}</td>
+      <td>{{ "%.2f"|format(loan.principal) }}</td>
+      <td>{{ loan.interest_rate }}</td>
+      <td>{{ loan.status }}</td>
+      <td>{{ loan.start_date }}</td>
+      <td>{{ loan.end_date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-info text-center">No loans found. Apply for a new one!</div>
+{% endif %}
+{% endblock %}
+    

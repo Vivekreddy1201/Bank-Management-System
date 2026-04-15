@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-6 mx-auto card p-4 shadow-sm mt-4 text-center">
+    <h3 class="text-danger mb-3">⚠️ Delete Account</h3>
+    <p>Account No: <strong>{{ acc.account_no }}</strong></p>
+    <p>Current Balance: <strong>₹{{ "%.2f"|format(acc.balance) }}</strong></p>
+
+    {% if acc.balance > 0 %}
+    <p class="text-muted mt-3">
+        You cannot delete an account that still has balance. Please choose one of the options below:
+    </p>
+
+    <div class="d-grid gap-2 mt-3">
+        <a href="/withdraw_balance/{{ acc.account_id }}" class="btn btn-warning">
+            💸 Withdraw Remaining Balance
+        </a>
+        <a href="/transfer_balance/{{ acc.account_id }}" class="btn btn-info">
+            🔁 Transfer Balance to Another Account
+        </a>
+        <a href="/dashboard" class="btn btn-outline-secondary">⬅ Cancel</a>
+    </div>
+
+    {% else %}
+    <div class="alert alert-success mt-3">
+        ✅ This account has no balance. You can safely delete it.
+    </div>
+    <a href="/confirm_delete/{{ acc.account_id }}" class="btn btn-danger mt-2 w-100">🗑️ Confirm Delete Account</a>
+    <a href="/dashboard" class="btn btn-outline-secondary mt-2 w-100">⬅ Cancel</a>
+    {% endif %}
+</div>
+{% endblock %}

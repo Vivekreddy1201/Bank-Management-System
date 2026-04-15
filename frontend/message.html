@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-6 mx-auto text-center mt-5">
+    <div class="card p-4 shadow-sm">
+        <h4>{{ msg }}</h4>
+
+        {% if 'Login Successful' in msg %}
+        <!-- ✅ Only show these buttons for login messages -->
+        <div class="mt-4">
+            <a href="/dashboard" class="btn btn-primary">🏦 Go to Dashboard</a>
+            <a href="/" class="btn btn-outline-secondary">🔐 Back to Login</a>
+        </div>
+        {% else %}
+        <!-- ✅ For all other actions, show only dashboard link -->
+        <div class="mt-4">
+            <a href="/dashboard" class="btn btn-primary">🏦 Back to Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

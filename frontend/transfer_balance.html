@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-6 mx-auto card p-4 shadow-sm mt-4 text-center">
+    <h3 class="text-primary mb-3">🔁 Transfer Remaining Balance</h3>
+    <p>From Account: <strong>{{ acc.account_no }}</strong></p>
+    <p>Balance: <strong>₹{{ "%.2f"|format(acc.balance) }}</strong></p>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Select Another Account to Receive Funds</label>
+            <select name="to_acc" class="form-select" required>
+                <option value="">-- Select Account --</option>
+                {% for other in other_accs %}
+                <option value="{{ other.account_no }}">A/c {{ other.account_no }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Transfer and Delete Account</button>
+        <a href="/dashboard" class="btn btn-outline-secondary mt-2 w-100">⬅ Cancel</a>
+    </form>
+</div>
+{% endblock %}
