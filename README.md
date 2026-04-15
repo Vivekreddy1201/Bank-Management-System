@@ -10,7 +10,6 @@ SmartBank is a modern banking system that allows users to:
 
 * Manage multiple bank accounts
 * Perform secure financial transactions
-* Apply and track loans
 * View transaction history
 * Authenticate securely using JWT cookies
 
